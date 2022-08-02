@@ -1,6 +1,6 @@
 ---
-title: About
-author: Tao He
+title: 关于
+author: 美分享
 date: 2022-08-02
 category: Jekyll
 layout: post

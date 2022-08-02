@@ -1,10 +1,10 @@
 ---
 layout: home
-title: 没分享
+title: 美分享
 permalink: /
 ---
 
-分享美好生活！
+在这里，分享美好生活！
 
 ## Demo
 

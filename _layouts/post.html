@@ -1,40 +1,67 @@
----
-layout: default
----
-<article class="post">
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head>
 
-  <h1 class="post-title">{{ page.title }}</h1>
+        {%- include head.html -%}
 
-  <p class="post-meta">
-    <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        {% if page.previous %}
+            <link rel="prev" href="{{site.baseurl}}{{page.previous.url}}" />
+        {% else %}
+            <link rel="prev" href="{{site.baseurl}}/" />
+        {% endif %}
 
-    {% if page.author %}
-      &nbsp;|&nbsp;
-      <span>{{ page.author }}</span>
-    {% endif %}
-  </p>
+        {% if page.next %}
+            <link rel="next" href="{{site.baseurl}}{{page.next.url}}" />
+        {% endif %}
+    </head>
+    <body>
+        <div class="book">
 
-  <div class="post-content">
+            {%- include toc-date.html -%}
 
-    {{ content }}
+            <div class="book-body">
+                <div class="book-header" role="navigation">
+                    <!-- Title -->
+                    <h1>
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                        {% if page.title %}
+                            <a href="." >{{ page.title | escape }}</a>
+                        {% else %}
+                            <a href="." >{{ site.title | escape }}</a>
+                        {% endif %}
+                    </h1>
+                </div>
 
-    <div class="post-links">
-      {% if page.previous.url %}
-        <a class="link-to-post" href="{{ page.previous.url | relative_url}}">
-          <span class="link-to-post__prev">← &nbsp; 上一篇</span>
-          <span class="link-to-post__title">{{ page.previous.title }}</span>
-        </a>
-      {% endif %}
+                <div class="body-inner">
+                    {%- include body.html -%}
 
-      {% if page.next.url %}
-        <a class="link-to-post" href="{{ page.next.url | relative_url}}">
-          <span class="link-to-post__next">下一篇 &nbsp; →</span>
-          <span class="link-to-post__title">{{ page.next.title }}</span>
-        </a>
-      {% endif %}
+                    {% if page.previous %}
+                        <a href="{{site.baseurl}}{{page.previous.url}}" class="navigation navigation-prev navigation-unique" aria-label="Previous page: {{page.previous.title}}">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    {% else %}
+                        <a href="{{site.baseurl}}/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: {{site.title}}">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    {% endif %}
 
-    </div>
+                    {% if page.next %}
+                        <a href="{{site.baseurl}}{{page.next.url}}" class="navigation navigation-next navigation-unique" aria-label="Next page: {{page.next.title}}">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
 
-  </div>
+            <script>
+            var gitbook = gitbook || [];
+            gitbook.push(function() {
+                gitbook.page.hasChanged({%- include metadata-post.json.tpl -%});
+            });
+            </script>
+        </div>
 
-</article>
+        {%- include footer.html -%}
+
+    </body>
+</html>

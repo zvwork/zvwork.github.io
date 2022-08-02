@@ -3,5 +3,5 @@ _site
 .jekyll-metadata
 .DS_Store
 
-# Ignore the config file that's used for gh-pages.
+# 忽略用于 gh-pages 页面的配置文件。
 _config.gh-pages.yml
